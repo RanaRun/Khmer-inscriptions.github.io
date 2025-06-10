@@ -6,67 +6,50 @@
   <title>វចនានុក្រមសិលាចារឹកខ្មែរ</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  
   <style>
-    /* Reset ការផ្គត់ផ្គង់ margin និង padding */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  .footer-menu {
+  position: fixed;      /* រឹងមាំនៅកន្លែងមួយ */
+  bottom: 0;            /* នៅផ្នែកខាងក្រោមអេក្រង់ */
+  left: 0;
+  width: 100%;          /* ទទឹងពេញអេក្រង់ */
+  background-color: #222; /* ពណ៌ផ្ទៃខាងក្រោម (អាចផ្លាស់ប្តូរ) */
+  display: flex;
+  justify-content: space-around; /* ចែកចាយលីងនៅជុំវិញ */
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+  z-index: 9999;        /* ធានាថាវា​នៅ​លើ​អ្នក​ផ្សេង */
+}
 
-    /* កំណត់ body និង html បំពេញអេក្រង់ */
-    html, body {
-      height: 100%;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
+.footer-menu a {
+  color: white;         /* ពណ៌អក្សរ */
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  flex-grow: 1;         /* ឲ្យទទឹងស្មើៗគ្នា */
+}
 
-    /* Wrapper មាន border និង flexible layout */
-    .border-wrapper {
-      max-width: 900px;       /* កំណត់ទទឹងបំផុតសម្រាប់ PC */
-      height: 90vh;           /* កំណត់កម្ពស់ 90% នៃ viewport height */
-      margin: 20px auto;      /* បណ្ដោះអាសន្នចន្លោះលើ-ក្រោម និងចំកណ្តាលទ្រង់ទ្រាយ */
-      border: 5px solid #444; /* ស៊ីម៉ង */
-      border-radius: 12px;
-      background-color: white;
-      padding: 20px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+.footer-menu a i {
+  display: block;       /* បង្ហាញ icon ជួរថ្នាក់ខាងលើអក្សរ */
+  font-size: 18px;
+  margin-bottom: 4px;
+}
 
-    /* កំណត់ម៉ោងសម្រាប់ក្បាល និងខ្លឹមសារ */
-    h1 {
-      color: #222;
-      margin-bottom: 12px;
-      text-align: center;
-    }
+/* បន្ថែមទំហំ និង spacing នៅលើទូរស័ព្ទ */
+@media (max-width: 600px) {
+  .footer-menu a {
+    font-size: 12px;
+  }
+  .footer-menu a i {
+    font-size: 16px;
+  }
+}
 
-    p {
-      color: #555;
-      line-height: 1.6;
-      font-size: 1rem;
-      text-align: center;
-    }
+/* បន្ថែម spacing នៅខាងក្រោម body ដើម្បីមិនឲ្យ content ត្រូវ footer មាឌ */
+body {
+  padding-bottom: 60px; /* តម្រូវបរិមាណស្មើ width footer */
+}
 
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      .border-wrapper {
-        margin: 10px;        /* បន្ថយ margin លើទូរស័ព្ទ */
-        height: auto;        /* ឲ្យកម្ពស់បត់បែន */
-        max-width: 100%;     /* ទទឹងពេញអេក្រង់ */
-        padding: 15px;
-        border-width: 3px;   /* បន្ថយទំហំស៊ីម៉ង */
-      }
-
-      p {
-        font-size: 0.9rem;   /* តូចជាងបន្តិចសម្រាប់ទូរស័ព្ទ */
-      }
-    }
   </style>
- 
   <style>
   /* បន្ថែម CSS ដើម្បីធ្វើ “Menu” ជាប់ខាងក្រោមជាប្រភេទ sticky */
 .bottom-menu {
