@@ -4,180 +4,683 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>វចនានុក្រមសិលាចារឹកខ្មែរ</title>
-  <link href="https://fonts.googleapis.com/css?family=Bayon|Francois+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
+    /* អក្សរស្តង់ដា និងទំរង់ UI រួម */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #1e1e2f;
-      color: white;
-      font-family: "Khmer OS Moul", sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #ffffff;
+      font-family: "Noto Sans Khmer", sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 215, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .header-title {
       text-align: center;
-      padding: 50px 20px;
-      max-width: 600px;
-      margin: auto;
     }
-    input, button {
-      font-family: "Khmer OS Moul", sans-serif;
-      font-size: 16px;
-      padding: 8px;
-      margin: 5px;
-      border-radius: 4px;
+
+    .header-title h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, #ffd700, #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .header-title h2 {
+      font-size: 1.2rem;
+      color: #b8c6db;
+      font-weight: 400;
+    }
+
+    /* Main Content */
+    .main-content {
+      display: grid;
+      gap: 2rem;
+      padding: 0 20px;
+    }
+
+    /* Search Section */
+    .search-section {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .search-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #ffd700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .search-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 250px;
+      padding: 15px 20px;
       border: none;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 1rem;
+      font-family: "Noto Sans Khmer", sans-serif;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
     }
-    input {
-      width: 80%;
-      background-color: #444497;
-      color: white;
+
+    .search-input:focus {
+      outline: none;
+      border-color: #ffd700;
+      background: rgba(255, 255, 255, 0.15);
     }
-    button {
-      background-color: #0000cb4d;
-      color: white;
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .search-btn {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ffd700, #ff6b35);
+      color: #1a1a2e;
+      font-family: "Noto Sans Khmer", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
+
+    .search-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    /* Result Section */
+    .result {
+      margin-top: 2rem;
+    }
+
     .result-card {
-      background-color: #2a2a57;
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
     }
-    #addSection {
-      margin-top: 30px;
-      display: none;
+
+    .result-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
     }
-    #addResult {
-      margin-top: 10px;
-      font-weight: bold;
+
+    .result-word {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
     }
-    #addResult.error {
-      color: #ff4d4d;
+
+    .result-pos {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff6b35, #ffd700);
+      color: #1a1a2e;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
     }
-    #addResult.success {
-      color: #4dff4d;
+
+    .result-definition {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #e8e8e8;
+    }
+
+    .no-result {
+      text-align: center;
+      padding: 2rem;
+      color: #b8c6db;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.5rem 20px 70px; /* bottom space for menu */
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    /* Footer menu */
+    .footer-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 52, 96, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.4);
+      z-index: 100;
+    }
+
+    .footer-menu a {
+      color: #ffd700;
+      font-weight: 600;
+      font-family: "Noto Sans Khmer", sans-serif;
+      font-size: 1rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-menu a:hover {
+      color: #ff6b35;
+    }
+
+    .footer-menu i {
+      font-size: 1.3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .logo {
+        width: 70px;
+        height: 70px;
+      }
+
+      .header-title h1 {
+        font-size: 1.5rem;
+      }
+
+      .header-title h2 {
+        font-size: 1rem;
+      }
+
+      .search-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-input {
+        min-width: auto;
+      }
+
+      .main-content {
+        padding: 0 10px;
+      }
+
+      .search-section {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .search-section {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .result-card {
+      animation: fadeInUp 0.4s ease-out;
     }
   </style>
 </head>
 <body>
-<img src="file:///C:/Users/DELL/OneDrive/Desktop/%E1%9E%9F%E1%9F%90%E1%9E%84%E1%9F%92%E1%9E%81/photo_2025-03-11_18-38-08.png" alt="ទង់ជាតិខ្មែរ" width="120">
-
-  <h1>ក្រុមអ្នកនិពន្ធកម្ពុជា</h1>
-  <h2>វចនានុក្រមសិលាចារឹកខ្មែរ</h2>
-
-  <form id="searchForm">
-    <input type="text" id="searchInput" placeholder="ស្វែងរកពាក្យ..." />
-    <button type="submit">ស្វែងរក</button>
-  </form>
-
-  <div id="result"></div>
-
-  <hr style="margin: 30px 0; border: 1px solid #555;" />
-
-  <h3>បញ្ចូល Pacode ដើម្បីបន្ថែមពាក្យថ្មី</h3>
-  <input type="password" id="pacodeInput" placeholder="បញ្ចូល Pacode" />
-  <button id="verifyPacodeBtn">ផ្ទៀងផ្ទាត់</button>
-  <div id="pacodeResult"></div>
-
-  <div id="addSection">
-    <h3>បន្ថែមពាក្យថ្មី</h3>
-    <input type="text" id="newWord" placeholder="ពាក្យថ្មី" /><br />
-    <input type="text" id="newPos" placeholder="ភេទ (ឧ. នាម)" /><br />
-    <input type="text" id="newDefinition" placeholder="និយមន័យ" /><br />
-    <button id="addButton">បន្ថែមពាក្យ</button>
-    <div id="addResult"></div>
+  <div class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+        <img src="images/logo.png" alt="Logo">
+        </div>
+        <div class="header-title">
+          <h1>ក្រុមអ្នកនិពន្ធកម្ពុជា</h1>
+          <h2>វចនានុក្រមសិលាចារឹកខ្មែរ</h2>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <div class="container">
+    <div class="main-content">
+      <div class="search-section">
+        <h2 class="search-title"><i class="fas fa-search"></i> ស្វែងរកពាក្យ</h2>
+        <form id="searchForm" class="search-form" autocomplete="off">
+          <input
+            type="text"
+            id="searchInput"
+            name="query"
+            class="search-input"
+            placeholder="ស្វែងរកពាក្យ..."
+            required
+            autofocus
+          />
+          <button type="submit" class="search-btn">
+            <i class="fas fa-search"></i> ស្វែងរក
+          </button>
+        </form>
+        <div id="result" class="result"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 ក្រុមអ្នកនិពន្ធកម្ពុជា | រក្សាសិទ្ធគ្រប់យ៉ាង</p>
+  </footer>
+
+  <script>
+    const dictionary = {
+      "សៀវភៅ": {
+        pos: "នាម",
+        definition: "សៀវភៅជាស្នាដៃបោះពុម្ពមួយប្រភេទដែលមានអត្ថបទ ឬរូបភាពដែលបញ្ចូលន័យសម្រាប់ការអប់រំ កម្សាន្ត ឬការសិក្សា។"
+      },
+      "ភាសា": {
+        pos: "នាម",
+        definition: "ប្រព័ន្ធនៃពាក្យនិងសញ្ញាដែលមនុស្សប្រើប្រាស់សម្រាប់ការទំនាក់ទំនង។"
+      },
+      // អ្នកអាចបន្ថែមពាក្យផ្សេងទៀតនៅទីនេះ
+    };
+
+    const form = document.getElementById("searchForm");
+    const input = document.getElementById("searchInput");
+    const resultDiv = document.getElementById("result");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const query = input.value.trim();
+      if (!query) return;
+      if (dictionary[query]) {
+        const entry = dictionary[query];
+        resultDiv.innerHTML = `
+          <div class="result-card">
+            <div class="result-word">${query}</div>
+            <div class="result-pos">${entry.pos}</div>
+            <div class="result-definition">${entry.definition}</div>
+          </div>
+        `;
+      } else {
+        resultDiv.innerHTML = `
+          <div class="no-result">គ្មានលទ្ធផលសម្រាប់ពាក្យ "${query}"</div>
+        `;
+      }
+    });
+  </script>
+  <!-- Footer menu -->
+<!-- Footer menu -->
+<nav class="footer-menu">
+  <a href="#" onclick="goToTop(event)"><i class="fas fa-search"></i> ស្វែងរក</a>
+  <a href="#" onclick="showSection(event, 'notes')"><i class="fas fa-sticky-note"></i> ពាក្យចំណាំ</a>
+  <a href="#" onclick="showSection(event, 'summary')"><i class="fas fa-book-open"></i> អក្សរសង្ខេប</a>
+  <a href="#" onclick="showSection(event, 'team')"><i class="fas fa-users"></i> ក្រុមការងារ</a>
+</nav>
+
+<!-- Additional sections hidden by default -->
+<div id="notes" class="hidden-section">
+  <h3>ពាក្យចំណាំ</h3>
+</div>
+
+<div id="summary" class="hidden-section">
+  <h3>អក្សរសង្ខេប</h3>
+ <div class="summary-section">
+  <h3>អក្សរសង្ខេប</h3>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>អក្សរ</th>
+        <th>ពាក្យពេញ</th>
+        <th>ន័យសង្ខេប</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>កិ.</td><td>កិរិយាសព្ទ</td><td>សម្ដីសំដែងកិរិយា គឺប្រាប់អំពើ, លំនាំ ឬ សំដែងហេតុឱ្យសម្រេចកិច្ចនោះៗ</td></tr>
+      <tr><td>ក.វិ.</td><td>កិរិយាវិសេស</td><td>សព្ទដែលនាំកិរិយាសព្ទ ឱ្យមានសេចក្ដីប្លែកជាងប្រក្រតី ដូចពាក្យថា លឿន, ឆាប់, យឺត។ល។</td></tr>
+      <tr><td>គ.</td><td>គុណសព្ទ</td><td>សម្ដីដែលប្រាប់ដំណើរនាមនាមឱ្យឃើញលក្ខណៈផ្សេងៗគ្នា។</td></tr>
+      <tr><td>ឋ.ន.</td><td>ឋាននាម</td><td>នាមឈ្មោះទីកន្លែង</td></tr>
+      <tr><td>ឋា.ន.ន.</td><td>ឋានន្តរនាម</td><td>នាមសម្គាល់ងារឬឋានន្តរសក្ដិ</td></tr>
+      <tr><td>ន.នាមសព្ទ</td><td>នរនាម</td><td>នាមមនុស្ស</td></tr>
+      <tr><td>និ.</td><td>និបាតសព្ទ</td><td>សព្ទសម្រាប់ផ្សំសម្ដីត្រង់ឃ្លារបះនីមួយៗ ជាជំនួយនាមសព្ទនិងកិរិយាសព្ទ ឱ្យមានសេចក្ដីស្រឡះ, ច្បាស់លាស់, ពីរោះស្រួលស្ដាប់។ល។ </td></tr>
+      <tr><td>បុំ.</td><td>បុំលិង្គ</td><td>ភេទប្រុស</td></tr>
+      <tr><td>ព.វ.</td><td>ពាក្យវេយ្យាករណ៍</td><td>ការធ្វើឱ្យជាក់ច្បាស់, ឱ្យប្រាកដ; ការពន្យល់; ពាក្យអធិប្បាយ; ពាក្យដោះស្រាយ; ពាក្យរាយ; </td></tr>
+      <tr><td>ព.ហុ.</td><td>ពហុវចន</td><td>ចំនួន២ឬច្រើន</td></tr>
+	  <tr><td>វវេ.</td><td>វេវចនសព្ទ</td><td>ពាក្យដែលមានសូរសំនៀងខុសគ្នា តែមានដំណើរសេចក្ដីត្រូវគ្នា</td></tr>
+      <tr><td>សម្មតិ.</td><td>សម្មតិកម្ម</td><td>របៀប វិធី បច្ចេកទេសក្នុងការបង្ហាញដំណើររឿងនៅក្នុងស្នាដៃអក្សរសិល្ប៍</td></tr>
+      <tr><td>សំខ្យា.</td><td>សំខ្យាសព្ទ</td><td>សព្ទប្រាប់ចំនួននាមនាម; មាន ២ យ៉ាង។</td></tr>
+      <tr><td>ឯក.</td><td>ឯកវចន</td><td>ចំនួន១</td></tr>
+      <tr><td>សព្វ.</td><td>សព្វនាម</td><td>ជំនួសនាម</td></tr>
+      <tr><td>សំ.</td><td>សំស្ក្រឹត</td><td>ភាសាសំស្ក្រឹត</td></tr>
+      <tr><td>ឥត្ថិ.</td><td>ឥត្ថីលិង្គ</td><td>ភេទស្រី</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+.summary-section .summary-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  color: #fff;
+  font-family: "Noto Sans Khmer", sans-serif;
+  text-align: left; /* ចំកណ្ដាលអក្សរទាំងមូល */
+}
+
+.summary-section h3 {
+  font-size: 1.8rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: left; /* ចំកណ្ដាលចំណងជើង */
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  text-align: center; /* ចំកណ្ដាលអក្សរទាំងតារាង */
+}
+
+.summary-table thead th {
+  background: linear-gradient(45deg, #ffd700, #ff6b35);
+  color: #1a1a2e;
+  padding: 12px 15px;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+  text-align: center; /* ចំកណ្ដាលចំណងជើងតារាង */
+}
+
+.summary-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.summary-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.summary-table tbody td {
+  padding: 10px 15px;
+  vertical-align: middle;
+  text-align: left; /* ឆ្វេង */
+}
+
+.summary-table tbody tr:hover {
+  background: rgba(255, 215, 0, 0.2);
+  cursor: default;
+}
+
+</style>
+
+</div>
+
+<div id="team" class="hidden-section">
+  <h3>ក្រុមការងារ</h3>
+  <p>ព័ត៌មានអំពីក្រុមការងារ៖</p>
+  <ul>
+    <li>ភិក្ខុ អមរិន្ទប្បញ្ញោ រុន រ៉ាណា - តួនាទី ប្រធាន</li>
+    <li>លោក មាន បញ្ញា - តួនាទី អនុប្រធានទី១</li>
+    <li>ព្រះតេជគុណ វ៉ែន ជាតិ - តួនាទី អនុប្រធានទី២</li>
+    <li>កញ្ញា ព្រី សុនាថ - តួនាទី ប្រធានផ្នែកបោះផ្សាយ</li>
+    <li>កញ្ញា ពៅ សុជាតា - តួនាទី អនុប្រធានផ្នែកបោះផ្សាយ</li>
+    <li>ព្រះតេជគុណ ចាន់ណារិទ្ធ សំរ៉ឹត - តួនាទី ប្រធានផ្នែកព័ត៌មានវិទ្យា</li>
+  </ul>
+</div>
+<style>
+ #team {
+  background-color: none ; /* ពណ៌ផ្ទៃក្រោយទន់ៗ */
+  border: 1px solid # ; /* របារខាងក្រោយ */
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: "Noto Sans Khmer", sans-serif;
+  color: # white; /* ពណ៌អក្សរផ្លូវការ */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.team-section h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: # blue; /* ពណ៌ខៀវផ្លូវការ */
+  margin-bottom: 1.2rem;
+  border-bottom: 2px solid #blue;
+  padding-bottom: 0.3rem;
+}
+
+.team-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.team-section li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #d7dce6;
+  font-size: 1.1rem;
+}
+
+.team-section li:last-child {
+  border-bottom: none;
+}
+
+.team-section strong {
+  font-weight: 700;
+  color: # white;
+}
+</style>
+<style>
+  .footer-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    background: #16213e;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    color: white;
+    font-family: "Noto Sans Khmer", sans-serif;
+    border-top: 1px solid #ffd700;
+    z-index: 9999;
+  }
+  .footer-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .footer-menu a:hover {
+    color: #ffd700;
+  }
+  .hidden-section {
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    color: white;
+  }
+</style>
+
 <script>
-  const dictionary = JSON.parse(localStorage.getItem("dictionary")) || {
-    "បព្វជ្ជា": {
-      pos: "នាម",
-      definition: "ការ បួស, ផ្នួស។ សូមបព្វជ្ជា គឺសូមផ្នួស; ឱ្យបព្វជ្ជា គឺបំបួស (ឱ្យបានជាសាមណេរ) បានបំពេញបព្វជ្ជា ឬ បានទទួលបព្វជ្ជា ពីថ្ងៃ ...។"
+  function goToTop(event) {
+    event.preventDefault();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    hideAllSections();
+  }
+
+  function showSection(event, id) {
+    event.preventDefault();
+    hideAllSections();
+    const section = document.getElementById(id);
+    if (section) {
+      section.style.display = 'block';
+      section.scrollIntoView({behavior: 'smooth'});
     }
-  };
+  }
 
-  const form = document.getElementById("searchForm");
-  const input = document.getElementById("searchInput");
-  const resultDiv = document.getElementById("result");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const query = input.value.trim();
-    if (!query) {
-      alert("សូមបញ្ចូលពាក្យស្វែងរក");
-      return;
-    }
-    const entry = dictionary[query];
-    if (entry) {
-      resultDiv.innerHTML = `
-        <div class="result-card">
-          <span class="word">${query}</span><br />
-          <span class="pos">${entry.pos}</span>
-          <p class="definition">${entry.definition}</p>
-        </div>
-      `;
-    } else {
-      resultDiv.innerHTML = `<p>មិនមានលទ្ធផលសម្រាប់ពាក្យ "${query}"</p>`;
-    }
-  });
-
-  // Pacode verification
-  const pacodeInput = document.getElementById("pacodeInput");
-  const verifyPacodeBtn = document.getElementById("verifyPacodeBtn");
-  const pacodeResult = document.getElementById("pacodeResult");
-  const addSection = document.getElementById("addSection");
-
-  // ចំនុច Pacode ខាងក្រោម អ្នកអាចផ្លាស់ប្តូរតាមចង់បាន
-  const correctPacode = "2545";
-
-  verifyPacodeBtn.addEventListener("click", function() {
-    const enteredCode = pacodeInput.value.trim();
-    if (enteredCode === correctPacode) {
-      pacodeResult.textContent = "✅ Pacode ត្រូវបានផ្ទៀងផ្ទាត់ជោគជ័យ។ អ្នកអាចបន្ថែមពាក្យបាន។";
-      pacodeResult.style.color = "#4dff4d";
-      addSection.style.display = "block";
-      pacodeInput.value = "";
-      pacodeInput.disabled = true;
-      verifyPacodeBtn.disabled = true;
-    } else {
-      pacodeResult.textContent = "❌ Pacode មិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។";
-      pacodeResult.style.color = "#ff4d4d";
-      addSection.style.display = "none";
-    }
-  });
-
-  // បន្ថែមពាក្យថ្មី
-  const addButton = document.getElementById("addButton");
-  const newWordInput = document.getElementById("newWord");
-  const newPosInput = document.getElementById("newPos");
-  const newDefinitionInput = document.getElementById("newDefinition");
-  const addResultDiv = document.getElementById("addResult");
-
-  addButton.addEventListener("click", function(e) {
-    e.preventDefault();
-
-    const word = newWordInput.value.trim();
-    const pos = newPosInput.value.trim();
-    const definition = newDefinitionInput.value.trim();
-
-    if (!word || !pos || !definition) {
-      addResultDiv.textContent = "❗ សូមបំពេញចន្លោះ";
-      addResultDiv.className = "error";
-      return;
-    }
-    if (dictionary[word]) {
-      addResultDiv.textContent = `❗ ពាក្យ "${word}" មានរួចហើយ។`;
-      addResultDiv.className = "error";
-      return;
-    }
-
-    dictionary[word] = { pos, definition };
-    localStorage.setItem("dictionary", JSON.stringify(dictionary));
-
-    addResultDiv.textContent = `✅ បានបន្ថែមពាក្យ "${word}" ជោគជ័យ!`;
-    addResultDiv.className = "success";
-
-    newWordInput.value = "";
-    newPosInput.value = "";
-    newDefinitionInput.value = "";
-  });
+  function hideAllSections() {
+    document.querySelectorAll('.hidden-section').forEach(sec => {
+      sec.style.display = 'none';
+    });
+  }
 </script>
+<div id="bookmark-section" style="margin-top: 15px; display: none; border: 1px solid #ffd700; border-radius: 8px; padding: 10px; background: rgba(255, 255, 255, 0.1); color: #fff; max-width: 400px;">
+  <h4>ប្រវត្តិពាក្យ</h4>
+  <ul id="history-list" style="list-style: none; padding-left: 0; max-height: 150px; overflow-y: auto;"></ul>
+</div>
 
+<button id="bookmark-btn" style="margin-top: 15px; padding: 8px 12px;">ពាក្យចំណាំ</button>
+
+<script>
+  // គំរូប្រវត្តិពាក្យ (អាចផ្ទុកពី localStorage ឬទិន្នន័យស្វ័យប្រវត្តិ)
+  let historyWords = JSON.parse(localStorage.getItem('historyWords') || '[]');
+  let bookmarkWords = JSON.parse(localStorage.getItem('bookmarkWords') || '[]');
+
+  // ឧទាហរណ៍បន្ថែមពាក្យក្នុងប្រវត្តិ (អាចប្រើពេលស្វែងរកពាក្យ)
+  function addToHistory(word) {
+    if (!historyWords.includes(word)) {
+      historyWords.push(word);
+      localStorage.setItem('historyWords', JSON.stringify(historyWords));
+    }
+  }
+
+  // បង្កើតបញ្ជីប្រវត្តិពាក្យ
+  function renderHistory() {
+    const historyList = document.getElementById('history-list');
+    historyList.innerHTML = '';
+    historyWords.forEach(word => {
+      const li = document.createElement('li');
+      li.textContent = word;
+      li.style.cursor = 'pointer';
+      li.style.padding = '5px 0';
+      li.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
+      li.addEventListener('click', () => {
+        addToBookmark(word);
+      });
+      historyList.appendChild(li);
+    });
+  }
+
+  // បន្ថែមពាក្យទៅពាក្យចំណាំ (Bookmark)
+  function addToBookmark(word) {
+    if (!bookmarkWords.includes(word)) {
+      bookmarkWords.push(word);
+      localStorage.setItem('bookmarkWords', JSON.stringify(bookmarkWords));
+      alert(`បានបញ្ចូលពាក្យ "${word}" ទៅពាក្យចំណាំ`);
+      renderBookmark();
+    }
+  }
+
+  // បង្ហាញបញ្ជីពាក្យចំណាំនៅក្នុងប៊ូតុងពាក្យចំណាំ
+  function renderBookmark() {
+    const bookmarkBtn = document.getElementById('bookmark-btn');
+    bookmarkBtn.textContent = 'ពាក្យចំណាំ: ' + (bookmarkWords.length > 0 ? bookmarkWords.join(', ') : 'គ្មានពាក្យ');
+  }
+
+  // ប៊ូតុងប្រវត្តិពាក្យ បង្ហាញ/លាក់បញ្ជីប្រវត្តិ
+  document.getElementById('history-btn').addEventListener('click', () => {
+    const section = document.getElementById('bookmark-section');
+    if (section.style.display === 'none') {
+      section.style.display = 'block';
+      renderHistory();
+    } else {
+      section.style.display = 'none';
+    }
+  });
 </body>
 </html>
