@@ -7,12 +7,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
+    /* Header and Footer Strengthening */
+    .header {
+      background: linear-gradient(90deg, #0f3460, #16213e);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .footer {
+      background: linear-gradient(90deg, #0f3460, #16213e);
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+      border-top: 2px solid #ffd700;
+    }
+
+    .footer-menu {
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+      border-top: 2px solid #ffd700;
+    }
+  </style>
+  <style>
     /* អក្សរស្តង់ដា និងទំរង់ UI រួម */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-	flex-wrap: soft wrap;
+	  flex-wrap: wrap;
     }
 
     body {
@@ -23,7 +44,6 @@
       line-height: 1.6;
       display: flex;
       flex-direction: column;
-	    flex-wrap: soft wrap;
     }
 
     .container {
@@ -327,7 +347,7 @@
     <div class="container">
       <div class="header-content">
         <div class="logo">
-        <img src="logo.png" alt="Logo">
+        <img src="images/logo.png" alt="Logo">
         </div>
         <div class="header-title">
           <h1>ក្រុមអ្នកនិពន្ធកម្ពុជា</h1>
