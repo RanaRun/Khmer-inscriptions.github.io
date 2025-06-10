@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>វចនានុក្រមសិលាចារឹកខ្មែរ</title>
+  <link href="https://fonts.googleapis.com/css?family=Bayon|Francois+One&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #1e1e2f;
+      color: white;
+      font-family: "Khmer OS Moul", sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    input, button {
+      font-family: "Khmer OS Moul", sans-serif;
+      font-size: 16px;
+      padding: 8px;
+      margin: 5px;
+      border-radius: 4px;
+      border: none;
+    }
+    input {
+      width: 80%;
+      background-color: #444497;
+      color: white;
+    }
+    button {
+      background-color: #0000cb4d;
+      color: white;
+      cursor: pointer;
+    }
+    .result-card {
+      background-color: #2a2a57;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    #addSection {
+      margin-top: 30px;
+      display: none;
+    }
+    #addResult {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #addResult.error {
+      color: #ff4d4d;
+    }
+    #addResult.success {
+      color: #4dff4d;
+    }
+  </style>
+</head>
+<body>
+<img src="file:///C:/Users/DELL/OneDrive/Desktop/%E1%9E%9F%E1%9F%90%E1%9E%84%E1%9F%92%E1%9E%81/photo_2025-03-11_18-38-08.png" alt="ទង់ជាតិខ្មែរ" width="120">
+
+  <h1>ក្រុមអ្នកនិពន្ធកម្ពុជា</h1>
+  <h2>វចនានុក្រមសិលាចារឹកខ្មែរ</h2>
+
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="ស្វែងរកពាក្យ..." />
+    <button type="submit">ស្វែងរក</button>
+  </form>
+
+  <div id="result"></div>
+
+  <hr style="margin: 30px 0; border: 1px solid #555;" />
+
+  <h3>បញ្ចូល Pacode ដើម្បីបន្ថែមពាក្យថ្មី</h3>
+  <input type="password" id="pacodeInput" placeholder="បញ្ចូល Pacode" />
+  <button id="verifyPacodeBtn">ផ្ទៀងផ្ទាត់</button>
+  <div id="pacodeResult"></div>
+
+  <div id="addSection">
+    <h3>បន្ថែមពាក្យថ្មី</h3>
+    <input type="text" id="newWord" placeholder="ពាក្យថ្មី" /><br />
+    <input type="text" id="newPos" placeholder="ភេទ (ឧ. នាម)" /><br />
+    <input type="text" id="newDefinition" placeholder="និយមន័យ" /><br />
+    <button id="addButton">បន្ថែមពាក្យ</button>
+    <div id="addResult"></div>
+  </div>
+
+<script>
+  const dictionary = JSON.parse(localStorage.getItem("dictionary")) || {
+    "បព្វជ្ជា": {
+      pos: "នាម",
+      definition: "ការ បួស, ផ្នួស។ សូមបព្វជ្ជា គឺសូមផ្នួស; ឱ្យបព្វជ្ជា គឺបំបួស (ឱ្យបានជាសាមណេរ) បានបំពេញបព្វជ្ជា ឬ បានទទួលបព្វជ្ជា ពីថ្ងៃ ...។"
+    }
+  };
+
+  const form = document.getElementById("searchForm");
+  const input = document.getElementById("searchInput");
+  const resultDiv = document.getElementById("result");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const query = input.value.trim();
+    if (!query) {
+      alert("សូមបញ្ចូលពាក្យស្វែងរក");
+      return;
+    }
+    const entry = dictionary[query];
+    if (entry) {
+      resultDiv.innerHTML = `
+        <div class="result-card">
+          <span class="word">${query}</span><br />
+          <span class="pos">${entry.pos}</span>
+          <p class="definition">${entry.definition}</p>
+        </div>
+      `;
+    } else {
+      resultDiv.innerHTML = `<p>មិនមានលទ្ធផលសម្រាប់ពាក្យ "${query}"</p>`;
+    }
+  });
+
+  // Pacode verification
+  const pacodeInput = document.getElementById("pacodeInput");
+  const verifyPacodeBtn = document.getElementById("verifyPacodeBtn");
+  const pacodeResult = document.getElementById("pacodeResult");
+  const addSection = document.getElementById("addSection");
+
+  // ចំនុច Pacode ខាងក្រោម អ្នកអាចផ្លាស់ប្តូរតាមចង់បាន
+  const correctPacode = "2545";
+
+  verifyPacodeBtn.addEventListener("click", function() {
+    const enteredCode = pacodeInput.value.trim();
+    if (enteredCode === correctPacode) {
+      pacodeResult.textContent = "✅ Pacode ត្រូវបានផ្ទៀងផ្ទាត់ជោគជ័យ។ អ្នកអាចបន្ថែមពាក្យបាន។";
+      pacodeResult.style.color = "#4dff4d";
+      addSection.style.display = "block";
+      pacodeInput.value = "";
+      pacodeInput.disabled = true;
+      verifyPacodeBtn.disabled = true;
+    } else {
+      pacodeResult.textContent = "❌ Pacode មិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។";
+      pacodeResult.style.color = "#ff4d4d";
+      addSection.style.display = "none";
+    }
+  });
+
+  // បន្ថែមពាក្យថ្មី
+  const addButton = document.getElementById("addButton");
+  const newWordInput = document.getElementById("newWord");
+  const newPosInput = document.getElementById("newPos");
+  const newDefinitionInput = document.getElementById("newDefinition");
+  const addResultDiv = document.getElementById("addResult");
+
+  addButton.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const word = newWordInput.value.trim();
+    const pos = newPosInput.value.trim();
+    const definition = newDefinitionInput.value.trim();
+
+    if (!word || !pos || !definition) {
+      addResultDiv.textContent = "❗ សូមបំពេញចន្លោះ";
+      addResultDiv.className = "error";
+      return;
+    }
+    if (dictionary[word]) {
+      addResultDiv.textContent = `❗ ពាក្យ "${word}" មានរួចហើយ។`;
+      addResultDiv.className = "error";
+      return;
+    }
+
+    dictionary[word] = { pos, definition };
+    localStorage.setItem("dictionary", JSON.stringify(dictionary));
+
+    addResultDiv.textContent = `✅ បានបន្ថែមពាក្យ "${word}" ជោគជ័យ!`;
+    addResultDiv.className = "success";
+
+    newWordInput.value = "";
+    newPosInput.value = "";
+    newDefinitionInput.value = "";
+  });
+</script>
+
+</body>
+</html>
