@@ -7,6 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
+  /* បន្ថែម CSS ដើម្បីធ្វើ “Menu” ជាប់ខាងក្រោមជាប្រភេទ sticky */
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+/* បន្ថែម padding នៅខាងក្រោម content ដើម្បីមិនឱ្យ menu បិទបាំង */
+body {
+  padding-bottom: /* តម្លៃទទឹង menu */ 60px;
+}
+
+  </style>
+  <style>
     /* Header and Footer Strengthening */
     .header {
       background: linear-gradient(90deg, #0f3460, #16213e);
@@ -671,7 +687,7 @@
   <ul id="history-list" style="list-style: none; padding-left: 0; max-height: 150px; overflow-y: auto;"></ul>
 </div>
 
-<button id="bookmark-btn" style="margin-top: 15px; padding: 8px 12px;">ពាក្យចំណាំ</button>
+<button id="bookmark-btn" style="margin-top: 15px; padding: 8px 12px;"></button>
 
 <script>
   // គំរូប្រវត្តិពាក្យ (អាចផ្ទុកពី localStorage ឬទិន្នន័យស្វ័យប្រវត្តិ)
