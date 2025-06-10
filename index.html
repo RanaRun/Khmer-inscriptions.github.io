@@ -231,7 +231,7 @@
 
     .search-form {
       display: flex;
-      max-width: 500px;
+​
       margin: 0 auto;
       gap: 10px;
       flex-wrap: wrap;
@@ -523,6 +523,7 @@
     display: block;
   }
 </style>
+
 </head>
 <body>
   <div class="header">
@@ -653,17 +654,96 @@ results.const(word => {
       suggestions.appendChild(li);
     });
 </script>
+<body data-font="Hanuman" class="bg-gray-100 text-gray-800">
 
-  <!-- Footer menu -->
-<!-- Footer menu -->
-<nav class="footer-menu">
-  <a href="#" onclick="goToTop(event)"><i class="fas fa-search"></i> ស្វែងរក</a>
-  <a href="#" onclick="showSection(event, 'notes')"><i class="fas fa-sticky-note"></i> ពាក្យចំណាំ</a>
-  <a href="#" onclick="showSection(event, 'summary')"><i class="fas fa-book-open"></i> អក្សរសង្ខេប</a>
-  <a href="#" onclick="showSection(event, 'team')"><i class="fas fa-users"></i> ក្រុមការងារ</a>
-  <a href="#" onclick="rotateFont(event)"><i class="fas fa-book"></i> ប្ដូរពុម្ពអក្សរ</a>
+<main class="p-4">
+  <h1 class="text-2xl font-semibold mb-4">មាតិកា</h1>
+  <p>នេះជាឧទាហរណ៍របារមេនុយជាប់ក្រោមអេក្រង់។</p>
+  <p>ចុចលើប៊ូតុង ដើម្បីប្ដូរពុម្ពអក្សរ និងបង្ហាញផ្នែកផ្សេងៗ។</p>
+</main>
 
-  </nav>
+<!-- Fixed bottom navigation -->
+<nav
+  class="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white flex justify-around items-center h-14 z-50 shadow-lg"
+>
+  <a
+    href="#"
+    onclick="goToTop(event)"
+    class="flex flex-col items-center justify-center text-sm hover:opacity-80 transition"
+  >
+    <i class="fas fa-search text-lg"></i>
+    <span>ស្វែងរក</span>
+  </a>
+  <a
+    href="#"
+    onclick="showSection(event, 'notes')"
+    class="flex flex-col items-center justify-center text-sm hover:opacity-80 transition"
+  >
+    <i class="fas fa-sticky-note text-lg"></i>
+    <span>ពាក្យចំណាំ</span>
+  </a>
+  <a
+    href="#"
+    onclick="showSection(event, 'summary')"
+    class="flex flex-col items-center justify-center text-sm hover:opacity-80 transition"
+  >
+    <i class="fas fa-book-open text-lg"></i>
+    <span>អក្សរសង្ខេប</span>
+  </a>
+  <a
+    href="#"
+    onclick="showSection(event, 'team')"
+    class="flex flex-col items-center justify-center text-sm hover:opacity-80 transition"
+  >
+    <i class="fas fa-users text-lg"></i>
+    <span>ក្រុមការងារ</span>
+  </a>
+  <a
+    href="#"
+    onclick="rotateFont(event)"
+    class="flex flex-col items-center justify-center text-sm hover:opacity-80 transition"
+  >
+    <i class="fas fa-book text-lg"></i>
+    <span>ប្ដូរពុម្ពអក្សរ</span>
+  </a>
+</nav>
+
+<script>
+  const fonts = [
+    "Hanuman",
+    "Kantumruy Pro",
+    "Battambang",
+    "Bayon",
+    "Nokora",
+    "Moul",
+    "Chenla",
+    "Content",
+    "Khmer",
+    "Koulen",
+  ];
+  let currentIndex = 0;
+
+  function rotateFont(event) {
+    event.preventDefault();
+    currentIndex = (currentIndex + 1) % fonts.length;
+    document.body.setAttribute("data-font", fonts[currentIndex]);
+  }
+
+  function goToTop(event) {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function showSection(event, section) {
+    event.preventDefault();
+    alert("បង្ហាញផ្នែក: " + section);
+  }
+</script>
+
+</body>
+ ​
+
+​
   <script>
 const fonts = [
   "Hanuman",
