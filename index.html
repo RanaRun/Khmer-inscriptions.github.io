@@ -25,6 +25,36 @@
 
   <!-- Your CSS and other head content here -->
 
+<style>
+  #iosPrompt {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    left: 10px;
+    right: 10px;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    z-index: 99999;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  #iosPromptClose {
+    float: right;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
 
   <style>
     /* Header and Footer Strengthening */
@@ -387,6 +417,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="header">
     <div class="container">
@@ -401,6 +432,11 @@
       </div>
     </div>
   </div>
+<div id="iosPrompt">
+  <span id="iosPromptClose">&times;</span>
+  📲 បន្ថែមទៅផ្ទាំងផ្ទះ៖ ចុច <strong>Share</strong> (ប៊ូតុង 📤 ខាងក្រោម Safari)
+  បន្ទាប់មកជ្រើស <strong>“Add to Home Screen”</strong> ដើម្បីចូលរួមការប្រើប្រាស់បានងាយ។
+</div>
 
   <div class="container">
     <div class="main-content">
@@ -428,6 +464,29 @@
   <footer class="footer">
     <p>© 2025 ក្រុមអ្នកនិពន្ធកម្ពុជា | រក្សាសិទ្ធគ្រប់យ៉ាង</p>
   </footer>
+<script>
+  function isiOS() {
+    return /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+  }
+
+  function isInStandaloneMode() {
+    return ('standalone' in window.navigator) && window.navigator.standalone;
+  }
+
+  // បង្ហាញ popup ប្រសិនបើជា iOS Safari មិនទាន់ Add
+  if (isiOS() && !isInStandaloneMode()) {
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('iosPrompt').style.display = 'block';
+      }, 1500); // បង្ហាញបន្ទាប់ 1.5s
+    });
+  }
+
+  // បិទ popup
+  document.getElementById('iosPromptClose').onclick = function() {
+    document.getElementById('iosPrompt').style.display = 'none';
+  };
+</script>
 
   <script>
     const dictionary = {
