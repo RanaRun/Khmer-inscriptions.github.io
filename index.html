@@ -6,66 +6,25 @@
   <title>វចនានុក្រមសិលាចារឹកខ្មែរ</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <style>
-  .footer-menu {
-  position: fixed;      /* រឹងមាំនៅកន្លែងមួយ */
-  bottom: 0;            /* នៅផ្នែកខាងក្រោមអេក្រង់ */
-  left: 0;
-  width: 100%;          /* ទទឹងពេញអេក្រង់ */
-  background-color: #222; /* ពណ៌ផ្ទៃខាងក្រោម (អាចផ្លាស់ប្តូរ) */
-  display: flex;
-  justify-content: space-around; /* ចែកចាយលីងនៅជុំវិញ */
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
-  z-index: 9999;        /* ធានាថាវា​នៅ​លើ​អ្នក​ផ្សេង */
-}
+  <!-- Required meta tags for iOS PWA support -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="YourAppName" />
+  
+  <!-- App icon for iOS home screen (apple-touch-icon) -->
+  <link rel="apple-touch-icon" href="/path/to/your-icon.png" />
 
-.footer-menu a {
-  color: white;         /* ពណ៌អក្សរ */
-  text-decoration: none;
-  font-size: 14px;
-  text-align: center;
-  flex-grow: 1;         /* ឲ្យទទឹងស្មើៗគ្នា */
-}
+  <!-- Optional: Startup screen image -->
+  <link rel="apple-touch-startup-image" href="/path/to/startup-image.png" />
 
-.footer-menu a i {
-  display: block;       /* បង្ហាញ icon ជួរថ្នាក់ខាងលើអក្សរ */
-  font-size: 18px;
-  margin-bottom: 4px;
-}
+  <!-- Viewport meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>Your App Title</title>
+  
+  <!-- Your CSS and other head content here -->
 
-/* បន្ថែមទំហំ និង spacing នៅលើទូរស័ព្ទ */
-@media (max-width: 600px) {
-  .footer-menu a {
-    font-size: 12px;
-  }
-  .footer-menu a i {
-    font-size: 16px;
-  }
-}
 
-/* បន្ថែម spacing នៅខាងក្រោម body ដើម្បីមិនឲ្យ content ត្រូវ footer មាឌ */
-body {
-  padding-bottom: 60px; /* តម្រូវបរិមាណស្មើ width footer */
-}
-
-  </style>
-  <style>
-  /* បន្ថែម CSS ដើម្បីធ្វើ “Menu” ជាប់ខាងក្រោមជាប្រភេទ sticky */
-.bottom-menu {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-
-/* បន្ថែម padding នៅខាងក្រោម content ដើម្បីមិនឱ្យ menu បិទបាំង */
-body {
-  padding-bottom: /* តម្លៃទទឹង menu */ 60px;
-}
-
-  </style>
   <style>
     /* Header and Footer Strengthening */
     .header {
@@ -790,4 +749,5 @@ body {
     }
   });
 </body>
+
 </html>
